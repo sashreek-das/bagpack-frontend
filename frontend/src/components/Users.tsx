@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 interface User {
     _id: string;
     username?: string;
+    firstname?: string;
     lastName?: string;
 }
 
@@ -65,7 +66,7 @@ function UserComponent({ user }: UserProps) {
                 </div>
             </div>
             <div className="flex flex-col justify-center h-full">
-                <Button onClick={() => navigate(`/send?id=${user._id}&name=${user.username || "Unknown"}`)} label="Send Money" />
+                <Button onClick={() => navigate(`/sendmoney?id=${user._id}&name=${user.username || "Unknown"}`)} label="Send Money" />
             </div>
         </div>
     );
