@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 interface User {
     _id: string;
-    firstName: string;
-    lastName: string;
+    username?: string;
+    lastName?: string;
 }
 
 export const Users = () => {
@@ -16,10 +16,9 @@ export const Users = () => {
         const fetchUsers = async () => {
             try {
                 const response = await axios.get("https://bagpack-jade.vercel.app/api/v1/user/bulk");
-                console.log(response.data); 
+                console.log(response.data.users);
                 
-                    setUsers(response.data.users);
-                
+                setUsers(response.data.users);
             } catch (error) {
                 console.error("There was an error fetching the users!", error);
             }
@@ -28,26 +27,14 @@ export const Users = () => {
         fetchUsers();
     }, []);
 
-    useEffect(() => {
-        console.log(users); // Log users state
-    }, [users]);
-
-    const renderUsers = () => {
-        const userElements = [];
-        for (let i = 0; i < users.length; i++) {
-            userElements.push(
-                <UserComponent user={users[i]} key={users[i]._id} />
-            );
-        }
-        return userElements;
-    };
-
     return (
         <>
             <div className="font-bold mt-6 text-lg">Users</div>
             <div>
                 {users && users.length > 0 ? (
-                    renderUsers()
+                    users.map(user => (
+                        <UserComponent key={user._id} user={user} />
+                    ))
                 ) : (
                     <div>No users found</div>
                 )}
@@ -68,17 +55,17 @@ function UserComponent({ user }: UserProps) {
             <div className="flex">
                 <div className="rounded-full h-12 w-12 bg-slate-200 flex justify-center items-center mt-1 mr-2">
                     <div className="flex flex-col justify-center h-full text-xl">
-                        {user.firstName[0]}
+                        {user.username ? user.username[0] : "?"}
                     </div>
                 </div>
                 <div className="flex flex-col justify-center h-full">
                     <div>
-                        {user.firstName} {user.lastName}
+                        {user.username} 
                     </div>
                 </div>
             </div>
             <div className="flex flex-col justify-center h-full">
-                <Button onClick={() => navigate(`/send?id=${user._id}&name=${user.firstName}`)} label="Send Money" />
+                <Button onClick={() => navigate(`/send?id=${user._id}&name=${user.username || "Unknown"}`)} label="Send Money" />
             </div>
         </div>
     );
