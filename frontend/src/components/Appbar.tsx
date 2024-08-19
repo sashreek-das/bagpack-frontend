@@ -6,12 +6,12 @@ export const Appbar = () => {
                 ZoomPay
             </div>
             <div className="flex items-center space-x-6">
-                <Link to="/sendmoney">
+                <Link to="/signup">
                     <button
                         type="button"
                         className="text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-3 focus:ring-blue-300 font-medium rounded-full text-xs px-4 py-2 text-center shadow-lg transition-all duration-300"
                     >
-                        New Transfer
+                        New Account
                     </button>
                 </Link>
                 <Link to="/signin">
