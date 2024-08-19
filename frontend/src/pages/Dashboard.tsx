@@ -2,6 +2,7 @@ import axios from "axios";
 import { Appbar } from "../components/Appbar";
 import { Balance } from "../components/Balance";
 import { useEffect, useState } from "react";
+import { Users } from "../components/Users";
 
 export const Dashboard = () => {
     const [balance, setBalance] = useState<number | null>(null);
@@ -22,6 +23,9 @@ export const Dashboard = () => {
             <Appbar />
             <div className="m-8">
                 {balance !== null ? <Balance value={balance} /> : "Loading..."}
+            </div>
+            <div>
+                <Users/>
             </div>
         </div>
     );
