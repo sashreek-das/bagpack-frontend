@@ -14,6 +14,14 @@ export const Appbar = () => {
                         New Account
                     </button>
                 </Link>
+                <Link to="https://dunhill.vercel.app/">
+                    <button
+                        type="button"
+                        className="text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring-3 focus:ring-blue-300 font-medium rounded-full text-xs px-4 py-2 text-center shadow-lg transition-all duration-300"
+                    >
+                        Try Crypto Wallet
+                    </button>
+                </Link>
                 <Link to="/signin">
                     <button
                         type="button"
@@ -23,6 +31,7 @@ export const Appbar = () => {
                         Logout
                     </button>
                 </Link>
+                
             </div>
         </div>
     );
